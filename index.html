@@ -200,7 +200,7 @@
     .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .nav-logo-box { width: 34px; height: 50px; display: flex; align-items: center; padding-right: 50px;justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 17px; color: var(--black); flex-shrink: 0; }
     .nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 2.5px; color: var(--white); text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin-left: auto; padding-right: 40px; }
     .nav-links a {
       color: rgba(255,255,255,0.72); text-decoration: none;
       font-size: 12.5px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
@@ -372,6 +372,72 @@
     }
 
     /* ══════════════════════════════
+       SLIDESHOW + QUAD LAYOUT
+    ══════════════════════════════ */
+    .svc-slideshow {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      background: #0f0f0f;
+    }
+    .svc-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .svc-slide.active {
+      opacity: 1;
+    }
+    .svc-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75);
+      display: block;
+    }
+
+    .svc-quad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(255,214,0,0.2);
+    }
+    .svc-quad-item {
+      padding: 28px 24px;
+      border-right: 1px solid rgba(255,214,0,0.15);
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+    .svc-quad-item:last-child {
+      border-right: none;
+    }
+    .svc-quad-item:hover {
+      background: #1a1700;
+    }
+    .svc-quad-icon {
+      font-size: 28px;
+      color: var(--yellow);
+    }
+    .svc-quad-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+    .svc-quad-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════
        WHY + INDUSTRIES
     ══════════════════════════════ */
     #why { background: var(--black); padding-top: 60px; }
@@ -403,6 +469,58 @@
     }
     .ind-tag:hover { border-color: var(--yellow); color: var(--yellow); }
 
+    /* ══════════════════════════════
+       SHOWCASE
+    ══════════════════════════════ */
+    .showcase-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      max-width: 1200px;
+      /* margin: 0 auto; */
+      margin-bottom: 50px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .showcase-img {
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .showcase-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+    .showcase-img:hover img { filter: brightness(1); }
+
+    .showcase-center {
+      width: 480px;
+      height: 320px;
+      z-index: 2;
+      opacity: 1;
+    }
+    .showcase-left,
+    .showcase-right {
+      width: 340px;
+      height: 260px;
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.9s ease;
+    }
+    .showcase-left {
+      transform: translateX(-120px);
+    }
+    .showcase-right {
+      transform: translateX(120px);
+    }
+    .showcase-left.animate,
+    .showcase-right.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
     .nav-book span,
     .form-sub span {
@@ -503,8 +621,7 @@
       justify-content: space-between;
       border-radius: 0;
     }
-    .testi-quote { margin-bottom: 16px; line-height: 1; }
-    .testi-quote svg { width: 40px; height: 40px; color: var(--yellow); }
+    .testi-quote { color: var(--yellow); opacity: 0.85; margin-bottom: 14px; line-height: 1; }
     .testi-text { font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.72; margin-bottom: 16px; }
     .testi-stars { display: flex; gap: 3px; margin-bottom: 14px; }
     .testi-stars svg { width: 18px; height: 18px; color: var(--yellow); fill: var(--yellow); }
@@ -565,7 +682,13 @@
     .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.2fr; gap: 42px; margin-bottom: 42px; }
     .footer-desc { font-size: 12.5px; color: rgba(255,255,255,0.28); line-height: 1.82; margin-top: 13px; max-width: 240px; }
     .footer-socials { display: flex; gap: 7px; margin-top: 17px; }
-    .footer-soc { width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; transition: var(--tr); }
+    .footer-soc {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      text-decoration: none; transition: var(--tr);
+    }
     .footer-soc:hover { border-color: var(--yellow); color: var(--yellow); }
     .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
     .footer-links { display: flex; flex-direction: column; gap: 8px; }
@@ -599,6 +722,7 @@
       .about-grid{grid-template-columns:1fr;gap:38px;}
       .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
       .fleet-grid{grid-template-columns:1fr 1fr;}
+      .svc-quad{grid-template-columns:repeat(2, 1fr);}
     }
     @media(max-width:768px){
       .nav-links,.nav-book{display:none;}
@@ -614,7 +738,10 @@
       .svc-row--reverse .svc-row-img{order:1;}
       .svc-row--reverse .svc-row-text{order:2;}
       .svc-row-text{padding:20px 24px;}
-    }
+      .svc-quad{grid-template-columns:repeat(2, 1fr);}
+      .svc-quad-item{border-right:1px solid rgba(255,214,0,0.15);}
+      .svc-quad-item:nth-child(2n){border-right:none;}
+      .svc-quad-item:nth-child(n+3){border-top:1px solid rgba(255,214,0,0.15);}
     }
     @media(max-width:480px){
       section{padding:52px 18px;}
@@ -625,7 +752,10 @@
       .svc-row--reverse .svc-row-img{order:1;}
       .svc-row--reverse .svc-row-text{order:2;}
       .svc-row-text{padding:16px 20px;}
-    }
+      .svc-slideshow{height:300px;}
+      .svc-quad{grid-template-columns:1fr;}
+      .svc-quad-item{border-right:none;border-bottom:1px solid rgba(255,214,0,0.15);}
+      .svc-quad-item:last-child{border-bottom:none;}
     }
   </style>
 </head>
@@ -635,7 +765,7 @@
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#home" class="nav-logo">
-      <div class="nav-logo-box">  <img src="logo.png" style="height: 80px; width:130px;"></div>
+      <div class="nav-logo-box">  <img src="/IMAGES/logo.png" style="height: 80px; width:130px;"></div>
       <div class="nav-logo-text">Hoop Car Rentals</div>
     </a>
     <ul class="nav-links">
@@ -688,62 +818,49 @@
     </div>
     <div class="services-panels">
       <!-- Individual Travel Block -->
-      <div class="svc-block">
+      <div class="svc-block" id="individual-block">
         <div class="svc-block-head">
-          <span class="svc-panel-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 2l-1 1"/>
-              <path d="M22 8l-1-1"/>
-              <path d="M16 2l1 1"/>
-              <path d="M16 8l1-1"/>
-            </svg>
-          </span>
+          <span class="svc-panel-icon"><i class="fas fa-users"></i></span>
           <div class="svc-panel-title">Individual Travel</div>
         </div>
 
-        <div class="svc-row">
-          <div class="svc-row-img">
+        <!-- Auto-playing image slideshow -->
+        <div class="svc-slideshow">
+          <div class="svc-slide active">
             <img src="airport.png" alt="Airport Pickup & Drop"/>
           </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-plane-arrival"></i></span>
-            <div class="svc-row-name">Airport Pickup & Drop</div>
-            <div class="svc-row-desc">Timely and comfortable airport transfers for hassle-free travel.</div>
+          <div class="svc-slide">
+            <img src="Evening ride through the city.png" alt="Local City Rides"/>
+          </div>
+          <div class="svc-slide">
+            <img src="Luxury ride through scenic sunset highway.png" alt="Outstation Trips"/>
+          </div>
+          <div class="svc-slide">
+            <img src="sight.png" alt="Sightseeing Packages"/>
           </div>
         </div>
 
-        <div class="svc-row svc-row--reverse">
-          <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80" alt="Local City Rides"/>
+        <!-- 4-part rectangle grid -->
+        <div class="svc-quad">
+          <div class="svc-quad-item">
+            <div class="svc-quad-icon"><i class="fas fa-plane-arrival"></i></div>
+            <div class="svc-quad-name">Airport Pickup & Drop</div>
+            <div class="svc-quad-desc">Timely and comfortable airport transfers for hassle-free travel.</div>
           </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-car"></i></span>
-            <div class="svc-row-name">Local City Rides</div>
-            <div class="svc-row-desc">Navigate the city with ease for business or leisure trips.</div>
+          <div class="svc-quad-item">
+            <div class="svc-quad-icon"><i class="fas fa-car"></i></div>
+            <div class="svc-quad-name">Local City Rides</div>
+            <div class="svc-quad-desc">Navigate the city with ease for business or leisure trips.</div>
           </div>
-        </div>
-
-        <div class="svc-row">
-          <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&q=80" alt="Outstation Trips"/>
+          <div class="svc-quad-item">
+            <div class="svc-quad-icon"><i class="fas fa-road"></i></div>
+            <div class="svc-quad-name">Outstation Trips</div>
+            <div class="svc-quad-desc">Long-distance travel with experienced drivers and well-maintained vehicles.</div>
           </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-road"></i></span>
-            <div class="svc-row-name">Outstation Trips</div>
-            <div class="svc-row-desc">Long-distance travel with experienced drivers and well-maintained vehicles.</div>
-          </div>
-        </div>
-
-        <div class="svc-row svc-row--reverse">
-          <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80" alt="Sightseeing Packages"/>
-          </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-binoculars"></i></span>
-            <div class="svc-row-name">Sightseeing Packages</div>
-            <div class="svc-row-desc">Explore tourist destinations with customized tour packages.</div>
+          <div class="svc-quad-item">
+            <div class="svc-quad-icon"><i class="fas fa-binoculars"></i></div>
+            <div class="svc-quad-name">Sightseeing Packages</div>
+            <div class="svc-quad-desc">Explore tourist destinations with customized tour packages.</div>
           </div>
         </div>
       </div>
@@ -764,7 +881,7 @@
 
         <div class="svc-row">
           <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Employee Transportation"/>
+            <img src="corporate.png" alt="Employee Transportation"/>
           </div>
           <div class="svc-row-text">
             <span class="svc-row-icon"><i class="fas fa-users"></i></span>
@@ -775,7 +892,7 @@
 
         <div class="svc-row svc-row--reverse">
           <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Business Travel Management"/>
+            <img src="door.png" alt="Business Travel Management"/>
           </div>
           <div class="svc-row-text">
             <span class="svc-row-icon"><i class="fas fa-briefcase"></i></span>
@@ -786,7 +903,7 @@
 
         <div class="svc-row">
           <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80" alt="Long-term Rentals"/>
+            <img src="key.png" alt="Long-term Rentals"/>
           </div>
           <div class="svc-row-text">
             <span class="svc-row-icon"><i class="fas fa-calendar-check"></i></span>
@@ -820,6 +937,22 @@
       <div class="why-card"><div class="why-card-title">Punctuality</div><div class="why-card-desc">On-time pickups guaranteed</div></div>
       <div class="why-card"><div class="why-card-title">Affordable Pricing</div><div class="why-card-desc">Transparent rates with no hidden charges</div></div>
     </div>
+
+    <!-- IMAGE SHOWCASE -->
+    <section id="showcase" style="padding: 60px 40px; background: var(--black); overflow: hidden;">
+      <div class="showcase-wrap">
+        <div class="showcase-img showcase-left">
+          <img src="/IMAGES/Golden compass pointing to best choice.png" alt="Service 1"/>
+        </div>
+        <div class="showcase-img showcase-center">
+          <img src="/IMAGES/baby.png" alt="Service 2"/>
+        </div>
+        <div class="showcase-img showcase-right">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/054/182/197/small/driver-near-luxury-car-close-up-chauffeur-service-photo.jpeg" alt="Service 3"/>
+        </div>
+      </div>
+    </section>
+
     <h2 class="ind-title">Industries We Serve</h2>
     <div class="ind-tags">
       <div class="ind-tag">IT Companies</div>
@@ -843,7 +976,7 @@
     <div class="fleet-grid">
       <div class="fleet-card">
         <div class="fleet-img-wrap">
-          <img src="sedan.jpeg" alt="Toyota Etios, Maruti Suzuki Dzire"/>
+          <img src="/IMAGES/sedan.jpeg" alt="Toyota Etios, Maruti Suzuki Dzire"/>
           <div class="fleet-badge">SEDAN</div>
         </div>
         <div class="fleet-body">
@@ -863,7 +996,7 @@
       </div>
       <div class="fleet-card">
         <div class="fleet-img-wrap">
-          <img src="Honda.jpeg" alt="Honda City, Maruti Ciaz"/>
+          <img src="/IMAGES/Honda.jpeg" alt="Honda City, Maruti Ciaz"/>
           <div class="fleet-badge">INTERMEDIATE</div>
         </div>
         <div class="fleet-body">
@@ -904,7 +1037,7 @@
       <div class="fleet-card">
         <div class="fleet-img-wrap">
           <!-- <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80" alt="Luxury cars"/> -->
-           <img src="car4.png" alt="Luxury cars"/>
+           <img src="/IMAGES/car4.png" alt="Luxury cars"/>
           <div class="fleet-badge">LUXURY</div>
         </div>
         <div class="fleet-body">
@@ -1006,7 +1139,11 @@
   <div class="testi-outer">
     <div class="testi-track" id="testiTrack">
       <div class="testi-card">
-        <div class="testi-quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c0-7.5 6-10 10-10s7 2.5 7 10M4 9c3-2 5-3 7-3s5 1 7 3M7 17h10"/></svg></div>
+        <div class="testi-quote">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.11-2.01L9.12 6c-.9.63-1.677 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.357.09.72.134 1.088.134.826 0 1.518-.25 2.076-.752.558-.5.837-1.2.837-2.11zm7.608 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.132-1.54-.022-.16-.95.09-1.95.775-3 .535-.81 1.24-1.48 2.11-2.01L16.728 6c-.9.63-1.676 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.355.09.72.134 1.088.134.825 0 1.517-.25 2.075-.752.56-.5.84-1.2.84-2.11z"/>
+          </svg>
+        </div>
         <div class="testi-text">"Hoop Car Rentals has been our go-to partner for corporate travel. Their punctuality and professionalism are unmatched. Highly recommended!"</div>
         <div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <div class="testi-line"></div>
@@ -1015,7 +1152,11 @@
         <div class="testi-company">Tech Corp India</div>
       </div>
       <div class="testi-card">
-        <div class="testi-quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c0-7.5 6-10 10-10s7 2.5 7 10M4 9c3-2 5-3 7-3s5 1 7 3M7 17h10"/></svg></div>
+        <div class="testi-quote">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.11-2.01L9.12 6c-.9.63-1.677 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.357.09.72.134 1.088.134.826 0 1.518-.25 2.076-.752.558-.5.837-1.2.837-2.11zm7.608 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.132-1.54-.022-.16-.95.09-1.95.775-3 .535-.81 1.24-1.48 2.11-2.01L16.728 6c-.9.63-1.676 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.355.09.72.134 1.088.134.825 0 1.517-.25 2.075-.752.56-.5.84-1.2.84-2.11z"/>
+          </svg>
+        </div>
         <div class="testi-text">"Used their outstation service for my Goa trip. The driver was courteous, the car was spotless, and the entire experience was seamless."</div>
         <div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <div class="testi-line"></div>
@@ -1024,7 +1165,11 @@
         <div class="testi-company">Wanderlust Diaries</div>
       </div>
       <div class="testi-card">
-        <div class="testi-quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c0-7.5 6-10 10-10s7 2.5 7 10M4 9c3-2 5-3 7-3s5 1 7 3M7 17h10"/></svg></div>
+        <div class="testi-quote">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.11-2.01L9.12 6c-.9.63-1.677 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.357.09.72.134 1.088.134.826 0 1.518-.25 2.076-.752.558-.5.837-1.2.837-2.11zm7.608 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.132-1.54-.022-.16-.95.09-1.95.775-3 .535-.81 1.24-1.48 2.11-2.01L16.728 6c-.9.63-1.676 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.355.09.72.134 1.088.134.825 0 1.517-.25 2.075-.752.56-.5.84-1.2.84-2.11z"/>
+          </svg>
+        </div>
         <div class="testi-text">"We have been using Hoop for employee transportation for over a year now. Reliable, safe, and cost-effective. Great service!"</div>
         <div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <div class="testi-line"></div>
@@ -1033,7 +1178,11 @@
         <div class="testi-company">StartupHub</div>
       </div>
       <div class="testi-card">
-        <div class="testi-quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c0-7.5 6-10 10-10s7 2.5 7 10M4 9c3-2 5-3 7-3s5 1 7 3M7 17h10"/></svg></div>
+        <div class="testi-quote">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.81 1.24-1.48 2.11-2.01L9.12 6c-.9.63-1.677 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.357.09.72.134 1.088.134.826 0 1.518-.25 2.076-.752.558-.5.837-1.2.837-2.11zm7.608 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.132-1.54-.022-.16-.95.09-1.95.775-3 .535-.81 1.24-1.48 2.11-2.01L16.728 6c-.9.63-1.676 1.42-2.33 2.37-.983 1.445-1.475 2.95-1.475 4.516 0 1.9.54 3.26 1.617 4.08.346.257.7.43 1.057.52.355.09.72.134 1.088.134.825 0 1.517-.25 2.075-.752.56-.5.84-1.2.84-2.11z"/>
+          </svg>
+        </div>
         <div class="testi-text">"Booked an airport transfer at 2 AM — the driver was already waiting. Spotless car, professional service. Will always choose Hoop!"</div>
         <div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <div class="testi-line"></div>
@@ -1124,16 +1273,16 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <a href="#home" class="nav-logo" style="text-decoration:none;display:inline-flex;align-items:center;gap:11px;">
-          <div class="nav-logo-box">H</div>
-          <div class="nav-logo-text">Hoop Car Rentals</div>
+        <a href="#home" class="nav-logo" style="text-decoration:none; display:inline-flex; align-items:center; gap:12px; margin-bottom: 16px;">
+          <img src="/IMAGES/logo.png" style="height:52px; width:auto; object-fit:contain; display:block;" alt="Hoop Car Rentals"/>
+          <div class="nav-logo-text">HOOP CAR RENTALS</div>
         </a>
         <p class="footer-desc">Your trusted partner for reliable and affordable car rental services across India. Safe. Comfortable. Always on time.</p>
         <div class="footer-socials">
-          <a href="#" class="footer-soc">f</a>
-          <a href="#" class="footer-soc">t</a>
-          <a href="#" class="footer-soc">in</a>
-          <a href="#" class="footer-soc">li</a>
+          <a href="#" class="footer-soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-soc"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-soc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-soc"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       <div>
@@ -1218,6 +1367,33 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // Showcase scroll animation
+  const showcaseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          document.querySelector('.showcase-left').classList.add('animate');
+          document.querySelector('.showcase-right').classList.add('animate');
+        }, 200);
+        showcaseObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const showcaseSection = document.getElementById('showcase');
+  if (showcaseSection) showcaseObserver.observe(showcaseSection);
+
+  // Individual Travel slideshow - auto-cycling
+  const slides = document.querySelectorAll('.svc-slide');
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 3500);
+  }
 </script>
 </body>
 </html>
