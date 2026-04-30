@@ -316,12 +316,12 @@
        SERVICES
     ══════════════════════════════ */
     #services { background: var(--black); padding-top: 0; }
-    .svc-block { max-width: 100%; margin: 0 0 60px 0; }
+    .svc-block { max-width: 80%; margin: 0 auto 80px; }
     .svc-block-head {
-      display: flex; align-items: center; gap: 14px;
-      padding: 20px 0 20px 0;
-      border-bottom: 2px solid rgba(255,214,0,0.3);
-      margin-bottom: 0;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      padding: 24px 0;
+      border-bottom: 2px solid rgba(255,214,0,0.25);
+      margin-bottom: 24px;
     }
     .svc-block-head .svc-panel-icon { color: var(--yellow); font-size: 22px; }
     .svc-block-head .svc-panel-title {
@@ -332,7 +332,9 @@
     .svc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 160px;
+      min-height: 200px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
     .svc-row-img { overflow: hidden; height: 160px; }
     .svc-row-img img {
@@ -341,6 +343,7 @@
       filter: brightness(0.75);
       display: block;
       transition: transform 0.5s ease, filter 0.3s;
+      padding: 15px;
     }
     .svc-row:hover .svc-row-img img {
       transform: scale(1.04);
@@ -349,11 +352,14 @@
     .svc-row-text {
       background: #0f0f0f;
       border: 1px solid rgba(255,255,255,0.05);
-      padding: 24px 36px;
+      padding: 40px 52px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 8px;
+      gap: 14px;
+    }
+    .svc-row + .svc-row {
+      border-top: 1px solid rgba(255,214,0,0.08);
     }
     .svc-row--reverse .svc-row-img { order: 2; }
     .svc-row--reverse .svc-row-text { order: 1; }
@@ -369,6 +375,76 @@
       color: rgba(255,255,255,0.45);
       line-height: 1.6;
       max-width: 400px;
+    }
+
+    .corp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .corp-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .corp-card:hover {
+      border-color: rgba(255,214,0,0.35);
+      transform: translateY(-3px);
+    }
+    .corp-card-top {
+      padding: 30px 28px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .corp-card-icon { color: var(--yellow); font-size: 30px; }
+    .corp-card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--yellow);
+    }
+    .corp-card-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+    .corp-card-img {
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+      margin-top: auto;
+      padding: 0 16px 16px;
+      box-sizing: border-box;
+    }
+    .corp-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.82);
+      display: block;
+      border-radius: 4px;
+      transition: transform 0.5s ease, filter 0.3s;
+    }
+    .corp-card:hover .corp-card-img img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+
+    #individual-block {
+      margin-bottom: 80px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,214,0,0.1);
     }
 
     /* ══════════════════════════════
@@ -573,11 +649,21 @@
     }
     .cov-inner { max-width: 1200px; margin: 0 auto; }
     .cov-grid-top { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-bottom: 14px; }
-    .cov-grid-bot { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; margin-bottom: 14px; }
-    .region-card { background: var(--black-3); border: 1px solid rgba(255,255,255,0.09); padding: 28px; transition: var(--tr); }
+    .cov-grid-bot { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 14px; }
+    .region-card { background: var(--black-3); border: 1px solid rgba(255,255,255,0.09); padding: 28px; transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), border-color 0.3s, box-shadow 0.3s; cursor: default; }
+    .region-card:hover {
+      transform: scale(1.03);
+      border-color: rgba(255,214,0,0.4);
+      box-shadow: 0 8px 32px rgba(255,214,0,0.08);
+      z-index: 2;
+      position: relative;
+    }
     .region-card:hover .region-name { color: var(--yellow); }
-    .region-card:hover{border: yellow 1px solid;}
-    .region-card:hover .city-pill { background: var(--olive-2); border-color: rgba(255,214,0,0.3); color: var(--yellow);}
+    .region-card:hover .city-pill {
+      background: var(--olive-2);
+      border-color: rgba(255,214,0,0.3);
+      color: var(--yellow);
+    }
     .region-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 14.5px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; transition: color var(--tr); }
     .city-pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .city-pill { background: var(--black-4); border: 1px solid rgba(255,255,255,0.1); padding: 5px 11px; font-size: 11.5px; font-weight: 500; color: rgba(255,255,255,0.62); border-radius: 3px; transition: all var(--tr); }
@@ -664,6 +750,16 @@
     .form-inp, .form-ta { background: var(--black-3); border: 1px solid rgba(255,255,255,0.09); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 13.5px; padding: 12px 15px; outline: none; width: 100%; transition: border-color var(--tr); }
     .form-inp::placeholder, .form-ta::placeholder { color: rgba(255,255,255,0.17); }
     .form-inp:focus, .form-ta:focus { border-color: var(--yellow); }
+    .form-inp:-webkit-autofill,
+    .form-inp:-webkit-autofill:hover,
+    .form-inp:-webkit-autofill:focus,
+    .form-ta:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset !important;
+      -webkit-text-fill-color: #ffffff !important;
+      caret-color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.09) !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
     .form-ta { height: 122px; resize: none; }
     .form-sub { width: 100%; padding: 14px; background: var(--yellow); color: var(--black); border: 2px solid var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13.5px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: var(--tr); margin-top: 3px; transform: skewX(-15deg); }
     .form-sub:hover { background: transparent; color: var(--yellow); }
@@ -759,6 +855,8 @@
       .svc-quad-item:last-child{border-bottom:none;}
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
 </head>
 <body>
 
@@ -867,60 +965,52 @@
       </div>
 
       <!-- Corporate Solutions Block -->
-      <div class="svc-block">
+      <div class="svc-block" id="corporate-block">
         <div class="svc-block-head">
-          <span class="svc-panel-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-              <rect x="9" y="6" width="6" height="4"/>
-              <line x1="10" y1="12" x2="14" y2="12"/>
-              <line x1="10" y1="16" x2="14" y2="16"/>
-            </svg>
-          </span>
+          <span class="svc-panel-icon"><i class="fas fa-building"></i></span>
           <div class="svc-panel-title">Corporate Solutions</div>
         </div>
 
-        <div class="svc-row">
-          <div class="svc-row-img">
-            <img src="/IMAGES/corporate.png" alt="Employee Transportation"/>
+        <div class="corp-grid">
+          <div class="corp-card">
+            <div class="corp-card-top">
+              <span class="corp-card-icon"><i class="fas fa-users"></i></span>
+              <div class="corp-card-name">Employee Transportation</div>
+              <div class="corp-card-desc">Reliable daily commute solutions for your workforce.</div>
+            </div>
+            <div class="corp-card-img">
+              <img src="/IMAGES/corporate.png" alt="Employee Transportation"/>
+            </div>
           </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-users"></i></span>
-            <div class="svc-row-name">Employee Transportation</div>
-            <div class="svc-row-desc">Reliable daily commute solutions for your workforce.</div>
+          <div class="corp-card">
+            <div class="corp-card-top">
+              <span class="corp-card-icon"><i class="fas fa-briefcase"></i></span>
+              <div class="corp-card-name">Business Travel Management</div>
+              <div class="corp-card-desc">Professional chauffeur services for executives and business meetings.</div>
+            </div>
+            <div class="corp-card-img">
+              <img src="/IMAGES/door.png" alt="Business Travel Management"/>
+            </div>
           </div>
-        </div>
-
-        <div class="svc-row svc-row--reverse">
-          <div class="svc-row-img">
-            <img src="/IMAGES/door.png" alt="Business Travel Management"/>
+          <div class="corp-card">
+            <div class="corp-card-top">
+              <span class="corp-card-icon"><i class="fas fa-calendar-check"></i></span>
+              <div class="corp-card-name">Long-term Rentals</div>
+              <div class="corp-card-desc">Flexible rental plans for extended corporate requirements.</div>
+            </div>
+            <div class="corp-card-img">
+              <img src="/IMAGES/key.png" alt="Long-term Rentals"/>
+            </div>
           </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-briefcase"></i></span>
-            <div class="svc-row-name">Business Travel Management</div>
-            <div class="svc-row-desc">Professional chauffeur services for executives and business meetings.</div>
-          </div>
-        </div>
-
-        <div class="svc-row">
-          <div class="svc-row-img">
-            <img src="/IMAGES/key.png" alt="Long-term Rentals"/>
-          </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-calendar-check"></i></span>
-            <div class="svc-row-name">Long-term Rentals</div>
-            <div class="svc-row-desc">Flexible rental plans for extended corporate requirements.</div>
-          </div>
-        </div>
-
-        <div class="svc-row svc-row--reverse">
-          <div class="svc-row-img">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Custom Corporate Contracts"/>
-          </div>
-          <div class="svc-row-text">
-            <span class="svc-row-icon"><i class="fas fa-file-contract"></i></span>
-            <div class="svc-row-name">Custom Corporate Contracts</div>
-            <div class="svc-row-desc">Tailored transportation solutions to fit your business needs.</div>
+          <div class="corp-card">
+            <div class="corp-card-top">
+              <span class="corp-card-icon"><i class="fas fa-file-contract"></i></span>
+              <div class="corp-card-name">Custom Corporate Contracts</div>
+              <div class="corp-card-desc">Tailored transportation solutions to fit your business needs.</div>
+            </div>
+            <div class="corp-card-img">
+              <img src="/IMAGES/hands.png" alt="Custom Corporate Contracts"/>
+            </div>
           </div>
         </div>
       </div>
@@ -1227,7 +1317,7 @@
         <div class="form-field"><label class="form-label">Email <em>*</em></label><input class="form-inp" type="email" placeholder="your.email@example.com"/></div>
         <div class="form-field"><label class="form-label">Phone <em>*</em></label><input class="form-inp" type="tel" placeholder="+91 xxxxx xxxxx"/></div>
         <div class="form-field"><label class="form-label">Message <em>*</em></label><textarea class="form-ta" placeholder="Tell us about your requirements..."></textarea></div>
-        <button class="form-sub" onclick="handleSubmit()"><span>Send Message</span></button>
+        <button type="button" class="form-sub" onclick="return handleSubmit(event)"><span>Send Message</span></button>
       </div>
       <div class="contact-right">
 
@@ -1246,7 +1336,7 @@
           <div>
             <div class="c-info-label">Email</div>
             <div class="c-info-val">
-              <a href="mailto:info@hoopcarrentals.com">info@hoopcarrentals.com</a>
+              <a href="mailto:reserve@hoopcarrental.com">reserve@hoopcarrental.com</a>
             </div>
           </div>
         </div>
@@ -1319,7 +1409,7 @@
 <a href="#contact" class="float-book">Book Now</a>
 
 <script>
-  // Sticky nav — transparent on hero, solid dark when scrolled
+  // Sticky nav
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
   });
@@ -1348,25 +1438,105 @@
   function testiPrev() { const max = cards.length - getVis(); ti = ti <= 0 ? max : ti - 1; updateTesti(); }
   window.addEventListener('resize', updateTesti);
 
-  // Form submit
-  function handleSubmit() {
-    const inputs = document.querySelectorAll('.form-inp');
-    const message = document.querySelector('.form-ta').value;
-
-    if (!inputs[0].value || !inputs[1].value || !inputs[2].value || !message) {
-      alert("Please fill all fields ❌");
-      return;
-    }
-
-    alert("Message sent successfully ✅");
+  // Popup functions
+  function closePopup() {
+    document.getElementById('successPopup').style.display = 'none';
   }
 
-  // Smooth scroll
+  // Prevent Escape key from closing popup
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
+  // ═══════════════════════════════════════════
+  // FORM SUBMISSION CONFIG
+  // Change USE_DJANGO to false to switch to EmailJS
+  // Change USE_DJANGO to true to switch back to Django
+  const USE_DJANGO = true;
+  const DJANGO_URL = 'https://YOUR-APP-NAME.onrender.com/api/contact/submit/';
+  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  // ═══════════════════════════════════════════
+
+  function handleSubmit(e) {
+    if (e) e.preventDefault();
+
+    const name = document.querySelectorAll('.form-inp')[0].value.trim();
+    const email = document.querySelectorAll('.form-inp')[1].value.trim();
+    const phone = document.querySelectorAll('.form-inp')[2].value.trim();
+    const message = document.querySelector('.form-ta').value.trim();
+    const btn = document.querySelector('.form-sub');
+
+    if (!name || !email || !phone || !message) {
+      alert('Please fill all fields ❌');
+      return false;
+    }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sending...';
+
+    function onSuccess() {
+      const popup = document.getElementById('successPopup');
+      popup.style.display = 'flex';
+      document.querySelectorAll('.form-inp').forEach(i => i.value = '');
+      document.querySelector('.form-ta').value = '';
+      btn.querySelector('span').textContent = 'Send Message';
+      btn.style.cssText = '';
+      btn.disabled = false;
+    }
+
+    function onError(err) {
+      console.error('Submission error:', err);
+      alert('Failed to send message. Please try again.');
+      btn.querySelector('span').textContent = 'Send Message';
+      btn.disabled = false;
+    }
+
+    if (USE_DJANGO) {
+      // ── DJANGO MODE ──────────────────────────
+      fetch("https://django-backend-hoops.onrender.com/api/contact/submit/", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Django response:', data);
+        if (data.success) {
+          onSuccess();
+        } else {
+          onError(data.error);
+        }
+      })
+      .catch(err => onError(err));
+
+    } else {
+      // ── EMAILJS MODE ─────────────────────────
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: email,
+        phone: phone,
+        message: message,
+        to_email: 'reserve@hoopcarrental.com'
+      })
+      .then(() => onSuccess())
+      .catch(err => onError(err));
+    }
+
+    return false;
+  }
+
+  // Smooth scroll — skip if popup is open
   document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    });
+      a.addEventListener('click', e => {
+        const popup = document.getElementById('successPopup');
+        if (popup && popup.style.display === 'flex') return; // ← don't scroll if popup open
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
   });
 
   // Showcase scroll animation
@@ -1385,7 +1555,7 @@
   const showcaseSection = document.getElementById('showcase');
   if (showcaseSection) showcaseObserver.observe(showcaseSection);
 
-  // Individual Travel slideshow - auto-cycling
+  // Individual Travel slideshow
   const slides = document.querySelectorAll('.svc-slide');
   if (slides.length > 0) {
     let currentSlide = 0;
@@ -1395,6 +1565,23 @@
       slides[currentSlide].classList.add('active');
     }, 3500);
   }
+</script>
+
+<!-- Success Popup -->
+<div id="successPopup" onclick="event.stopPropagation()" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); align-items:center; justify-content:center;">
+  <div style="background:#111; border:1px solid rgba(255,214,0,0.4); padding:48px 52px; text-align:center; max-width:420px; width:90%;">
+    <div style="font-size:52px; margin-bottom:16px;">✅</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:28px; text-transform:uppercase; color:#FFD600; margin-bottom:10px;">Message Sent!</div>
+    <div style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.7; margin-bottom:28px;">Thank you for reaching out.<br/>Our team will contact you shortly.</div>
+    <button onclick="closePopup()" style="background:#FFD600; color:#000; border:none; padding:13px 40px; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:14px; letter-spacing:2px; text-transform:uppercase; cursor:pointer;">CLOSE</button>
+  </div>
+</div>
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault(); // ✅ stops page refresh
+
+      alert("Form submitted successfully!");
+  });
 </script>
 </body>
 </html>
