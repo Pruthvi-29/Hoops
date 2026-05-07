@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Hoop Car Rentals - Reliable Car Rentals for Every Journey across India."/>
+  <link rel="icon" href="data:,">
   <title>Hoop Car Rentals — Reliable Car Rentals for Every Journey</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1529,12 +1530,14 @@
     return false;
   }
 
-  // Smooth scroll — skip if popup is open
+  
   document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
+    a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (!href || href === '#') return; // ← ADD THIS LINE
         const popup = document.getElementById('successPopup');
-        if (popup && popup.style.display === 'flex') return; // ← don't scroll if popup open
-        const t = document.querySelector(a.getAttribute('href'));
+        if (popup && popup.style.display === 'flex') return;
+        const t = document.querySelector(href);
         if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
   });
@@ -1576,12 +1579,6 @@
     <button onclick="closePopup()" style="background:#FFD600; color:#000; border:none; padding:13px 40px; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:14px; letter-spacing:2px; text-transform:uppercase; cursor:pointer;">CLOSE</button>
   </div>
 </div>
-<script>
-  document.querySelector("form").addEventListener("submit", function(e) {
-      e.preventDefault(); // ✅ stops page refresh
 
-      alert("Form submitted successfully!");
-  });
-</script>
 </body>
 </html>
